@@ -1,22 +1,36 @@
 import * as contentful from 'contentful';
 import React, { useState, useEffect } from 'react';
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
 import _ from 'lodash'
+import './BlogList.css'
 
 import Container from 'react-bootstrap/Container'
+import { DateTime } from "luxon";
+import { useNavigate } from "react-router-dom";
+import Archives from './Archives';
+import { useParams } from "react-router-dom";
+
+import AboutMe from './AboutMe';
+import Header from './Header';
+import Quicklinks from './Quicklinks';
+
 
 // import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 
 
-const BlogList = () => {
+const BlogList = (props) => {
     const [items, setItems] = useState([]);
+
+    const [loading, setLoading] = useState(false);
     const [tags, setTags] = useState([]);
+    let navigate = useNavigate();
+    const { year, month } = useParams();
 
 
     useEffect(() => {
+
         let contentfulClient = contentful.createClient({
             accessToken: '1EuIOgC3v2LcxuD2ambb2454ijXnjHKsheuWnPFjGPs',
             space: 'nvm4509pk8bp'
@@ -26,15 +40,19 @@ const BlogList = () => {
         contentfulClient.getEntries({
             content_type: PLAYER_CONTENT_TYPE_ID,
             order: '-fields.title',
-
         })
             .then(function (entries) {
-                setItems(entries.items);
+                filterItems(entries.items);
+                // setItems(entries.items);
                 setTags(getTags(entries.items))
-
             })
 
-    }, []);
+
+
+    }, [year]);
+
+
+
 
     const getTaggedContents = (e, tag) => {
         e.preventDefault();
@@ -68,9 +86,25 @@ const BlogList = () => {
                     setItems(entries.items);
                 })
         }
-
     }
 
+    const filterItems = (items) => {
+        if (year && month) {
+            let result = items.filter(function (dt) {
+                console.log(dt.fields.blogPostDate)
+                const monthArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                let blogYear = new Date(dt.fields.blogPostDate).getFullYear().toString()
+                let blogMonth = monthArray[new Date(dt.fields.blogPostDate).getMonth()]
+                return blogYear === year && blogMonth === month;
+            });
+            setItems(result)
+        }
+        else {
+            setItems(items)
+        }
+
+
+    }
     const getContents = () => {
         const contentsArray = []
         items.forEach((item, index) => {
@@ -78,22 +112,37 @@ const BlogList = () => {
             item.metadata.tags.forEach((t, i) => {
                 tagArray.push(<a href="#" style={{ marginRight: "10px" }}>{t.sys.id}</a>)
             })
+            let blogCreateDate = "";
+            if (item.fields.blogPostDate) {
+                blogCreateDate = DateTime.fromISO(item.fields.blogPostDate).toLocaleString(DateTime.DATETIME_FULL)
+            }
+
+
             contentsArray.push(<div key={index}>
                 <Row className="mt-5">
-                    <Col>
+                    <Col md={12}>
                         <h3>{item.fields.title}</h3>
                     </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <p>{item.fields.shortDescription}</p>
+                    <Col md={12}>
+                        <p>{blogCreateDate}</p>
                     </Col>
                 </Row>
+                <Row >
+                    <Col >
+                        <p>{item.fields.shortDescription}</p>
+                    </Col>
+
+                </Row>
                 <Row>
+                    <a className= "link-color" href="#" onClick={(e) => navigateToDetails(e, item.sys.id)} > Read More
+                    </a>
+                </Row>
+
+                {/* <Row>
                     <Col>
                         <div>{tagArray}</div>
                     </Col>
-                </Row>
+                </Row> */}
             </div>
             )
 
@@ -118,6 +167,10 @@ const BlogList = () => {
     }
 
 
+    const navigateToDetails = (e, id) => {
+        navigate("/details/" + id);
+    }
+
     const renderTags = () => {
         const tagsArray = []
         tags.forEach((tag, index) => {
@@ -130,12 +183,63 @@ const BlogList = () => {
     return (
         <>
             <Container >
-                <Row className="mt-5 mb-5">
-                    <Col>
-                        {renderTags()}
+                <Row className="mt-4 mb-5 gx-5">
+
+                    <Col md={3} >
+                        <div >
+                        <Header title="About Me" />
+                        <AboutMe />
+                        </div>
                     </Col>
+
+                    <Col md={6} >
+                    <div >
+                        <Header title="Blogs" />
+                        <Row style={{backgroundColor:"white"}}>
+                            <Col >
+                                <Row className="mt-5">
+                                    <Col>
+                                        {renderTags()}
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col>
+                                        {getContents()}
+                                    </Col>
+                                </Row>
+                            </Col>
+                        </Row>
+                        </div>
+                    </Col>
+
+                    <Col md={3}>
+                        <div >
+                        <Header title="Archives" />
+                        <Row style={{backgroundColor:"white",paddingTop:"10px",paddingBottom:"10px"}}>
+                            <Col >
+                            <Archives />
+                            </Col>
+                        </Row>
+                        <Row style={{backgroundColor:"white",marginTop:"10px"}}>
+                            <Col >
+                            <AboutMe />
+                            </Col>
+                        </Row>
+                        <Row style={{backgroundColor:"white",marginTop:"10px"}}>
+                            <Col >
+                            <h4 style={{paddingTop:'10px'}}>Quicklinks</h4>
+                            <Quicklinks />
+                            </Col>
+                        </Row>
+                        </div>
+                    </Col>
+                  
+
                 </Row>
-                {getContents()}
+
+
+
+
             </Container>
 
         </>
