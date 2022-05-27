@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Card from 'react-bootstrap/Card'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLinkedin } from '@fortawesome/free-brands-svg-icons'
+import { faLinkedin , faTwitter} from '@fortawesome/free-brands-svg-icons'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Modal from 'react-bootstrap/Modal'
@@ -80,6 +80,9 @@ const AboutMe = () => {
                     <Card.Text>
                     <a href="https://www.linkedin.com/in/neerejselvakumar"> 
                      <FontAwesomeIcon icon={faLinkedin} />
+                        </a>
+                        <a href="https://twitter.com/neerejs123"> 
+                     <FontAwesomeIcon icon={faTwitter} />
                         </a>
                     </Card.Text>
                          </Card.Body>
