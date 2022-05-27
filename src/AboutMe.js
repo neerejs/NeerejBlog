@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Card from 'react-bootstrap/Card'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTwitter, faFontAwesome,faLinkedin } from '@fortawesome/free-brands-svg-icons'
+import {faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 

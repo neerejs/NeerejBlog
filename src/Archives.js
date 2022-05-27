@@ -6,7 +6,7 @@ import Accordion from 'react-bootstrap/Accordion'
 import { DateTime } from "luxon";
 import ListGroup from 'react-bootstrap/ListGroup'
 import { useNavigate } from "react-router-dom";
-import AboutMe from './AboutMe';
+
 
 const Archives = (props) => {
     const [items, setItems] = useState([]);
@@ -71,7 +71,7 @@ const Archives = (props) => {
 
             const accordionBodyArray = []
             _.uniq(monthFullNameArray).forEach((item, index) => {
-                accordionBodyArray.push( <a href="#"  onClick={(e) => findItems(e,Object.keys(monthsCount),year)}> 
+                accordionBodyArray.push( <a href="#/"  onClick={(e) => findItems(e,Object.keys(monthsCount),year)}> 
                 <ListGroup.Item>{Object.keys(monthsCount)} ({Object.values(monthsCount)})</ListGroup.Item>
                 </a>)
             })

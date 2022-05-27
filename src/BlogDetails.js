@@ -1,13 +1,13 @@
 import * as contentful from 'contentful';
 import React, { useState, useEffect} from 'react';
 import { useParams } from "react-router-dom";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { BLOCKS, INLINES,MARKS } from "@contentful/rich-text-types";
+
+import {MARKS } from "@contentful/rich-text-types";
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 // import _ from 'lodash'
 import Spinner from 'react-bootstrap/Spinner'
-import Image from 'react-bootstrap/Image'
+
 import Container from 'react-bootstrap/Container'
 import { DateTime } from "luxon";
 import Header from './Header.js'
@@ -31,7 +31,7 @@ const BlogDetails= (props) => {
                 setLoading(false)
                 console.log(entry)
             })
-
+          // eslint-disable-next-line
     }, []);
 
 
@@ -41,7 +41,7 @@ const BlogDetails= (props) => {
         // items.forEach((item, index) => {
             const tagArray = []
             item.metadata.tags.forEach((t, i) => {
-                tagArray.push(<a href="#" style={{ marginRight: "10px" }}>{t.sys.id}</a>)
+                tagArray.push(<a href="#/" style={{ marginRight: "10px" }}>{t.sys.id}</a>)
             })
             let blogCreateDate="";
             if (item.fields.blogPostDate)

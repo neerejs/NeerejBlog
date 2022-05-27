@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Card from 'react-bootstrap/Card'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTwitter, faFontAwesome, faLinkedin } from '@fortawesome/free-brands-svg-icons'
+
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import ListGroup from 'react-bootstrap/ListGroup';
@@ -56,7 +54,7 @@ const Quicklinks = () => {
 
                         <ListGroup>
                         <ListGroup.Item>
-                            <a href={link.fields.url} target="_blank">
+                            <a href={link.fields.url} target="_blank" rel="noreferrer">
 
                                 {link.fields.title}
                             </a>

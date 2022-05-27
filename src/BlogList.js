@@ -23,7 +23,7 @@ import Quicklinks from './Quicklinks';
 const BlogList = (props) => {
     const [items, setItems] = useState([]);
 
-    const [loading, setLoading] = useState(false);
+    
     const [tags, setTags] = useState([]);
     let navigate = useNavigate();
     const { year, month } = useParams();
@@ -48,7 +48,7 @@ const BlogList = (props) => {
             })
 
 
-
+// eslint-disable-next-line
     }, [year]);
 
 
@@ -110,7 +110,7 @@ const BlogList = (props) => {
         items.forEach((item, index) => {
             const tagArray = []
             item.metadata.tags.forEach((t, i) => {
-                tagArray.push(<a href="#" style={{ marginRight: "10px" }}>{t.sys.id}</a>)
+                tagArray.push(<a href="#/" style={{ marginRight: "10px" }}>{t.sys.id}</a>)
             })
             let blogCreateDate = "";
             if (item.fields.blogPostDate) {
@@ -134,7 +134,7 @@ const BlogList = (props) => {
 
                 </Row>
                 <Row>
-                    <a className= "link-color" href="#" onClick={(e) => navigateToDetails(e, item.sys.id)} > Read More
+                    <a className= "link-color" href="#/" onClick={(e) => navigateToDetails(e, item.sys.id)} > Read More
                     </a>
                 </Row>
 
