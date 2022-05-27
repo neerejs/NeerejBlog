@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Card from 'react-bootstrap/Card'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faLinkedin } from '@fortawesome/free-brands-svg-icons'
+import { faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
+import Modal from 'react-bootstrap/Modal'
+import Button from 'react-bootstrap/Button'
+import Image from 'react-bootstrap/Image'
 
 
 import * as contentful from 'contentful';
@@ -11,6 +14,26 @@ import * as contentful from 'contentful';
 const AboutMe = () => {
 
     const [aboutItems, setAboutItems] = useState([]);
+    const [show, setShow] = useState(false);
+    const [name, setName] = useState("");
+    const [school, setSchool] = useState("");
+    const [degrees, setDegrees] = useState("");
+    const [bio, setBio] = useState("");
+    const [imgurl, setImageurl] = useState("");
+
+
+    const handleClose = () => setShow(false);
+    const handleShow = (name,school,degrees,bio,imgurl) =>  {
+    
+        setName(name)
+        setSchool(school)
+        setDegrees(degrees)
+        setBio(bio)
+        setImageurl(imgurl)
+        setShow(true);
+    }
+    
+    
 
     useEffect(() => {
 
@@ -49,6 +72,10 @@ const AboutMe = () => {
                     <Card.Subtitle style={{marginTop:"5px"}}>{about.fields.school}</Card.Subtitle>
                     <Card.Text style={{marginTop:"10px"}}>
                       {about.fields.bio}
+                     
+                        </Card.Text>
+                        <Card.Text>
+                        <a href="#/"  onClick={(e) => handleShow (about.fields.name,about.fields.degrees,about.fields.school,about.fields.bio,about.fields.imgUrl)} >Read More</a>
                         </Card.Text>
                     <Card.Text>
                     <a href="https://www.linkedin.com/in/neerejselvakumar"> 
@@ -67,9 +94,36 @@ const AboutMe = () => {
 
 
     return (
-        
+
         <>
         {getAboutMe()}
+
+       
+
+    <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>{name} <br></br><span className="modal-subtitle">{school}</span> <br></br><span className="modal-subtitle">{degrees}</span></Modal.Title>
+         
+        </Modal.Header>
+        <Modal.Body>
+        <Row>
+            <Col md={3}>
+            <Image fluid src={imgurl}></Image>
+            </Col>
+        <Col md={9}>
+                {bio}
+            </Col>
+
+        </Row>
+        
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+         
+        </Modal.Footer>
+      </Modal>
         </>
      );
 }
