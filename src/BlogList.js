@@ -222,11 +222,6 @@ const BlogList = (props) => {
                         </Row>
                         <Row style={{backgroundColor:"white",marginTop:"10px"}}>
                             <Col >
-                            <AboutMe />
-                            </Col>
-                        </Row>
-                        <Row style={{backgroundColor:"white",marginTop:"10px"}}>
-                            <Col >
                             <h4 style={{paddingTop:'10px'}}>Quicklinks</h4>
                             <Quicklinks />
                             </Col>

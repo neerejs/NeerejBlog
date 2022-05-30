@@ -53,7 +53,7 @@ const BlogDetails= (props) => {
 
               
 
-                <Row className="mt-5">
+                <Row className="mt-5" >
                 
                     <Col md={12} style={{backgroundColor:'white'}}>
                     <Header title="Blogs" />
@@ -69,7 +69,7 @@ const BlogDetails= (props) => {
                     </Col>
                 </Row>
                 <Row>
-                    <Col >
+                    <Col style={{backgroundColor:'white'}}>
                         {/* <div>{documentToReactComponents(item.fields.body,renderOptions)}</div> */}
                         <RichText
                           richText={item.fields.body}

@@ -77,13 +77,14 @@ const AboutMe = () => {
                         <Card.Text>
                         <a href="#/"  onClick={(e) => handleShow (about.fields.name,about.fields.degrees,about.fields.school,about.fields.bio,about.fields.imgUrl)} >Read More</a>
                         </Card.Text>
-                    <Card.Text>
-                    <a href="https://www.linkedin.com/in/neerejselvakumar"> 
-                     <FontAwesomeIcon icon={faLinkedin} />
+                    <Card.Text><p>
+                    <a className="atag" href="https://www.linkedin.com/in/neerejselvakumar"> 
+                     <FontAwesomeIcon icon={faLinkedin} /> 
                         </a>
+                        
                         <a href="https://twitter.com/neerejs123"> 
                      <FontAwesomeIcon icon={faTwitter} />
-                        </a>
+                        </a></p>
                     </Card.Text>
                          </Card.Body>
             </Card>
