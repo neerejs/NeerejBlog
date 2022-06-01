@@ -15,7 +15,8 @@ import { useParams } from "react-router-dom";
 import AboutMe from './AboutMe';
 import Header from './Header';
 import Quicklinks from './Quicklinks';
-
+import ContactMe from './ContactMe';
+import Sweepstakes from './Sweepstakes';
 
 // import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 
@@ -23,7 +24,7 @@ import Quicklinks from './Quicklinks';
 const BlogList = (props) => {
     const [items, setItems] = useState([]);
 
-    
+
     const [tags, setTags] = useState([]);
     let navigate = useNavigate();
     const { year, month } = useParams();
@@ -48,7 +49,7 @@ const BlogList = (props) => {
             })
 
 
-// eslint-disable-next-line
+        // eslint-disable-next-line
     }, [year]);
 
 
@@ -134,7 +135,7 @@ const BlogList = (props) => {
 
                 </Row>
                 <Row>
-                    <a className= "link-color" href="#/" onClick={(e) => navigateToDetails(e, item.sys.id)} > Read More
+                    <a className="link-color" href="#/" onClick={(e) => navigateToDetails(e, item.sys.id)} > Read More
                     </a>
                 </Row>
 
@@ -185,50 +186,74 @@ const BlogList = (props) => {
             <Container >
                 <Row className="mt-4 mb-5 gx-5">
 
+
                     <Col md={3} >
                         <div >
-                        <Header title="About Me" />
-                        <AboutMe />
+                            <Row>
+                                <Col>
+                                    <Row>
+                                        <Col>
+                                            <Header title="About Me" />
+                                            <AboutMe />
+                                        </Col>
+                                    </Row>
+                                    <Row style={{ backgroundColor: "white" , marginTop:'10px', paddingBottom:'10px'}}>
+                                    <h4 style={{ paddingTop: '10px' }}>Enter the Giveaway</h4>
+                                        <Col>
+                                            <Sweepstakes />
+                                        </Col>
+                                    </Row>
+                                </Col>
+                            </Row>
                         </div>
                     </Col>
 
+
+
                     <Col md={6} >
-                    <div >
-                        <Header title="Blogs" />
-                        <Row style={{backgroundColor:"white"}}>
-                            <Col >
-                                <Row className="mt-5">
-                                    <Col>
-                                        {renderTags()}
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col>
-                                        {getContents()}
-                                    </Col>
-                                </Row>
-                            </Col>
-                        </Row>
+                        <div >
+                            <Header title="Blogs" />
+                            <Row style={{ backgroundColor: "white" }}>
+                                <Col >
+                                    <Row className="mt-5">
+                                        <Col>
+                                            {renderTags()}
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>
+                                            {getContents()}
+                                        </Col>
+                                    </Row>
+                                </Col>
+                            </Row>
                         </div>
                     </Col>
 
                     <Col md={3}>
                         <div >
-                        <Header title="Archives" />
-                        <Row style={{backgroundColor:"white",paddingTop:"10px",paddingBottom:"10px"}}>
-                            <Col >
-                            <Archives />
-                            </Col>
-                        </Row>
-                        <Row style={{backgroundColor:"white",marginTop:"10px"}}>
-                            <Col >
-                            <h4 style={{paddingTop:'10px'}}>Quicklinks</h4>
-                            <Quicklinks />
-                            </Col>
-                        </Row>
+                            <Header title="Archives" />
+                            <Row style={{ backgroundColor: "white", paddingTop: "10px", paddingBottom: "10px" }}>
+                                <Col >
+                                    <Archives />
+                                </Col>
+                            </Row>
+                            <Row style={{ backgroundColor: "white", marginTop: "10px" }}>
+                                <Col >
+                                    <h4 style={{ paddingTop: '10px' }}>Quicklinks</h4>
+                                    <Quicklinks />
+                                </Col>
+                            </Row>
+                            <Row style={{ backgroundColor: "white", marginTop: "10px", paddingBottom: '10px' }}>
+                                <Col>
+                                    <h4 style={{ paddingTop: '10px' }}>Contact Us</h4>
+                                    <ContactMe />
+                                </Col>
+
+                            </Row>
                         </div>
                     </Col>
-                  
+
 
                 </Row>
 
