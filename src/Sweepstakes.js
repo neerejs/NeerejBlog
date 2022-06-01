@@ -24,10 +24,10 @@ const handleClick =(event) => {
   .then((space) => space.getEnvironment('master'))
   .then((environment) => environment.createEntry('giveaway', {
     fields: {
-      fullName: {
+      name: {
         'en-US': FullName
       },
-      emailAddress: {
+      email: {
         'en-US':EmailAddress
       }
     }
