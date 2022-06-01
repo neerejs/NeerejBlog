@@ -17,12 +17,14 @@ import Header from './Header';
 import Quicklinks from './Quicklinks';
 import ContactMe from './ContactMe';
 import Sweepstakes from './Sweepstakes';
+import Form from 'react-bootstrap/Form'
 
 // import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 
 
 const BlogList = (props) => {
     const [items, setItems] = useState([]);
+    const [SearchText, SetSearchText] = useState([]);
 
 
     const [tags, setTags] = useState([]);
@@ -89,6 +91,27 @@ const BlogList = (props) => {
         }
     }
 
+    const searchBlog = (e) => {
+        e.preventDefault();
+        const client = contentful.createClient({
+            accessToken: '1EuIOgC3v2LcxuD2ambb2454ijXnjHKsheuWnPFjGPs',
+            space: 'nvm4509pk8bp'
+        })
+
+        let PLAYER_CONTENT_TYPE_ID = 'blogs';
+
+        client.getEntries({
+            content_type: PLAYER_CONTENT_TYPE_ID,
+            'query': SearchText
+        })
+            .then((response) => {
+                setItems(response.items)
+                console.log(response.items)
+            })
+            .catch(console.error)
+
+    }
+
     const filterItems = (items) => {
         if (year && month) {
             let result = items.filter(function (dt) {
@@ -120,6 +143,7 @@ const BlogList = (props) => {
 
 
             contentsArray.push(<div key={index}>
+
                 <Row className="mt-5">
                     <Col md={12}>
                         <h3>{item.fields.title}</h3>
@@ -188,6 +212,7 @@ const BlogList = (props) => {
 
 
                     <Col md={3} >
+
                         <div >
                             <Row>
                                 <Col>
@@ -197,8 +222,8 @@ const BlogList = (props) => {
                                             <AboutMe />
                                         </Col>
                                     </Row>
-                                    <Row style={{ backgroundColor: "white" , marginTop:'10px', paddingBottom:'10px'}}>
-                                    <h4 style={{ paddingTop: '10px' }}>Enter the Giveaway</h4>
+                                    <Row style={{ backgroundColor: "white", marginTop: '10px', paddingBottom: '10px' }}>
+                                        <h4 style={{ paddingTop: '10px' }}>Enter the Giveaway</h4>
                                         <Col>
                                             <Sweepstakes />
                                         </Col>
@@ -214,6 +239,25 @@ const BlogList = (props) => {
                         <div >
                             <Header title="Blogs" />
                             <Row style={{ backgroundColor: "white" }}>
+                                <Row>
+                                    <Col>
+                                        <Form>
+                                            <Form.Group className="mb-3" controlId="formsearchtext">
+                                                <Form.Label>Search</Form.Label>
+                                                <Form.Control type="email" placeholder="Enter the text to search"
+                                                    value={SearchText}
+                                                    onChange={(e) => SetSearchText(e.target.value)}
+                                                />
+
+                                            </Form.Group>
+
+                                            <Button variant="primary" type="submit" onClick={(e) => searchBlog(e)}  >
+                                                Search
+                                                </Button>
+                                        </Form>
+                                    </Col>
+
+                                </Row>
                                 <Col >
                                     <Row className="mt-5">
                                         <Col>
