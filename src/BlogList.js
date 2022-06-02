@@ -15,9 +15,12 @@ import { useParams } from "react-router-dom";
 import AboutMe from './AboutMe';
 import Header from './Header';
 import Quicklinks from './Quicklinks';
-import ContactMe from './ContactMe';
+
 import Sweepstakes from './Sweepstakes';
 import Form from 'react-bootstrap/Form'
+import ContactPic from './assets/contactme.png';
+import Image from 'react-bootstrap/Image'
+import { LinkContainer} from 'react-router-bootstrap';
 
 // import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 
@@ -216,14 +219,15 @@ const BlogList = (props) => {
                         <div >
                             <Row>
                                 <Col>
-                                    <Row>
+                                    <Row style={{marginBottom:"20px"}}>
                                         <Col>
                                             <Header title="About Me" />
                                             <AboutMe />
                                         </Col>
                                     </Row>
-                                    <Row style={{ backgroundColor: "white", marginTop: '10px', paddingBottom: '10px' }}>
-                                        <h4 style={{ paddingTop: '10px' }}>Enter the Giveaway</h4>
+
+                                    <Header title="Giveaway"/>
+                                    <Row style={{ backgroundColor: "white", paddingBottom: '10px' }}>
                                         <Col>
                                             <Sweepstakes />
                                         </Col>
@@ -238,12 +242,12 @@ const BlogList = (props) => {
                     <Col md={6} >
                         <div >
                             <Header title="Blogs" />
-                            <Row style={{ backgroundColor: "white" }}>
+                            <Row style={{ backgroundColor: "white", paddingTop: '20px' }}>
                                 <Row>
-                                    <Col>
+                                    <Col md={8}>
                                         <Form>
                                             <Form.Group className="mb-3" controlId="formsearchtext">
-                                                <Form.Label>Search</Form.Label>
+
                                                 <Form.Control type="email" placeholder="Enter the text to search"
                                                     value={SearchText}
                                                     onChange={(e) => SetSearchText(e.target.value)}
@@ -251,10 +255,13 @@ const BlogList = (props) => {
 
                                             </Form.Group>
 
-                                            <Button variant="primary" type="submit" onClick={(e) => searchBlog(e)}  >
-                                                Search
-                                                </Button>
+
                                         </Form>
+                                    </Col>
+                                    <Col md={4}>
+                                        <Button variant="primary" type="submit" onClick={(e) => searchBlog(e)}  >
+                                            Search
+                                        </Button>
                                     </Col>
 
                                 </Row>
@@ -277,21 +284,26 @@ const BlogList = (props) => {
                     <Col md={3}>
                         <div >
                             <Header title="Archives" />
-                            <Row style={{ backgroundColor: "white", paddingTop: "10px", paddingBottom: "10px" }}>
+                            <Row style={{ backgroundColor: "white", paddingTop: "10px", paddingBottom: "10px", marginBottom:"20px"}}>
                                 <Col >
                                     <Archives />
                                 </Col>
                             </Row>
-                            <Row style={{ backgroundColor: "white", marginTop: "10px" }}>
+
+                            <Header title="Quicklinks"/>
+                            <Row style={{ backgroundColor: "white" }}>
                                 <Col >
-                                    <h4 style={{ paddingTop: '10px' }}>Quicklinks</h4>
+                            
                                     <Quicklinks />
                                 </Col>
                             </Row>
                             <Row style={{ backgroundColor: "white", marginTop: "10px", paddingBottom: '10px' }}>
                                 <Col>
-                                    <h4 style={{ paddingTop: '10px' }}>Contact Us</h4>
-                                    <ContactMe />
+                                    {/* <h4 style={{ paddingTop: '10px' }}>Contact Us</h4>
+                                    <ContactMe /> */}
+                                    <LinkContainer to="/contactus">
+                                        <Image fluid src = {ContactPic}></Image>
+                                    </LinkContainer>
                                 </Col>
 
                             </Row>

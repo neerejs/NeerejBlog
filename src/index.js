@@ -7,16 +7,19 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import BlogList from './BlogList';
 import BlogDetails from './BlogDetails';
 import TopNav from './TopNav';
+import ContactMe from './ContactMe';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <>
-<TopNav />
+
 <BrowserRouter>
+<TopNav />
   <Routes>
     <Route path="/:year/:month" element={<BlogList  />}> </Route>
     <Route path="/" element={<BlogList  />}> </Route>
     <Route path="/details/:blogid" element={<BlogDetails />}> </Route>
+    <Route path="/contactus" element={<ContactMe />}> </Route>
   </Routes>
 </BrowserRouter>
 </>

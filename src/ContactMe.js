@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import * as contentfulManagement from 'contentful-management';
 import Alert from 'react-bootstrap/Alert'
+import { useNavigate } from 'react-router-dom';
 
 
 function ContactMe() {
@@ -13,6 +14,7 @@ function ContactMe() {
     let [EmailAddress, setEmailAddress] = useState('');
     let [Comments, setComments] = useState('');
     const [show, setShow] = useState(false);
+    const navigate = useNavigate();
 
     const handleClick = (event) => {
         event.preventDefault();
@@ -45,6 +47,8 @@ function ContactMe() {
                 setEmailAddress('')
                 setComments('')
 
+                
+
             })
             .catch((error) => {
                 alert("Error occurred. please try later.")
@@ -56,7 +60,7 @@ function ContactMe() {
     return (
         <div>
             <Container>
-                <Row>
+                <Row style={{backgroundColor:"white", marginTop:'20px', paddingTop:'10px', paddingBottom:'10px'}}>
                     <Col>
                         <Form>
                             <Form.Group className="mb-3" controlId="formFullName">
@@ -85,7 +89,9 @@ function ContactMe() {
                                 />
                             </Form.Group>
 
-                            {show?<Alert key='success' variant='success' dismissible onClose={() => setShow(false)}> Record created successfully  </Alert> : null}
+                            {show?<Alert key='success' variant='success' dismissible onClose={() => {
+                                setShow(false)
+                                navigate('/')}}> Record created successfully  </Alert> : null}
                             <Button variant="primary" type="submit" onClick={(e) => handleClick(e)} >
                                 Submit
                              </Button>
