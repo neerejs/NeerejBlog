@@ -4,17 +4,19 @@ import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
- import * as contentfulManagement from 'contentful-management';
+import * as contentfulManagement from 'contentful-management';
+import Alert from 'react-bootstrap/Alert';
 
 
 function Sweepstakes() {
   let [FullName, setFullName] = useState('');
   let [EmailAddress, setEmailAddress] = useState('');
+  const [show, setShow] = useState(false);
   
 
 const handleClick =(event) => {
   event.preventDefault();
-
+  setShow(true);
   const client = contentfulManagement.createClient({
     accessToken: 'CFPAT-oUCFauW8e8B0z1etnV5Lx0V0eEegb51Dy4d__550f1k'
   })
@@ -72,7 +74,7 @@ const handleClick =(event) => {
           />
         </Form.Group>
 
-       
+        {show?<Alert key='success' variant='success' dismissible onClose={() => setShow(false)}> Record created successfully  </Alert> : null}
         <Button variant="primary" type="submit" onClick={(e) =>handleClick(e)}>
           Submit
         </Button>
