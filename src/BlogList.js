@@ -198,6 +198,8 @@ const BlogList = (props) => {
         navigate("/details/" + id);
     }
 
+    
+
     const renderTags = () => {
         const tagsArray = []
         tags.forEach((tag, index) => {
@@ -218,14 +220,14 @@ const BlogList = (props) => {
                         <div >
                             <Row>
                                 <Col>
-                                    <Row style={{marginBottom:"20px"}}>
+                                    <Row style={{ marginBottom: "20px" }}>
                                         <Col>
                                             <Header title="About Me" />
                                             <AboutMe />
                                         </Col>
                                     </Row>
 
-                                    <Header title="Giveaway"/>
+                                    <Header title="Giveaway" />
                                     <Row style={{ backgroundColor: "white", paddingBottom: '10px' }}>
                                         <Col>
                                             <Sweepstakes />
@@ -283,16 +285,16 @@ const BlogList = (props) => {
                     <Col md={3}>
                         <div >
                             <Header title="Archives" />
-                            <Row style={{ backgroundColor: "white", paddingTop: "10px", paddingBottom: "10px", marginBottom:"20px"}}>
+                            <Row style={{ backgroundColor: "white", paddingTop: "10px", paddingBottom: "10px", marginBottom: "20px" }}>
                                 <Col >
                                     <Archives />
                                 </Col>
                             </Row>
 
-                            <Header title="Quicklinks"/>
+                            <Header title="Quicklinks" />
                             <Row style={{ backgroundColor: "white" }}>
                                 <Col >
-                            
+
                                     <Quicklinks />
                                 </Col>
                             </Row>
@@ -300,8 +302,9 @@ const BlogList = (props) => {
                                 <Col>
                                     {/* <h4 style={{ paddingTop: '10px' }}>Contact Us</h4>
                                     <ContactMe /> */}
+
                                     <a href='/contactus'>
-                                    <Image fluid src = {ContactPic} style={{padding:"10px"}}></Image>
+                                        <Image fluid src={ContactPic} style={{ padding: "10px" }}></Image>
                                     </a>
                                 </Col>
 
