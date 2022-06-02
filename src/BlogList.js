@@ -21,6 +21,7 @@ import Form from 'react-bootstrap/Form'
 import ContactPic from './assets/contactme.png';
 import Image from 'react-bootstrap/Image'
 
+
 // import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 
 
@@ -303,8 +304,8 @@ const BlogList = (props) => {
                                     {/* <h4 style={{ paddingTop: '10px' }}>Contact Us</h4>
                                     <ContactMe /> */}
 
-                                    <a href='/contactus'>
-                                        <Image fluid src={ContactPic} style={{ padding: "10px" }}></Image>
+                                    <a href="/Contactus">
+                                        <Image fluid src={ContactPic} ></Image>
                                     </a>
                                 </Col>
 
