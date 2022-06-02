@@ -19,7 +19,6 @@ import Quicklinks from './Quicklinks';
 import Sweepstakes from './Sweepstakes';
 import Form from 'react-bootstrap/Form'
 import ContactPic from './assets/contactme.png';
-import Image from 'react-bootstrap/Image'
 
 
 // import { BLOCKS, INLINES } from "@contentful/rich-text-types";
@@ -199,7 +198,7 @@ const BlogList = (props) => {
         navigate("/details/" + id);
     }
 
-    
+
 
     const renderTags = () => {
         const tagsArray = []
@@ -304,9 +303,14 @@ const BlogList = (props) => {
                                     {/* <h4 style={{ paddingTop: '10px' }}>Contact Us</h4>
                                     <ContactMe /> */}
 
+
                                     <a href="/Contactus">
-                                        <Image fluid src={ContactPic}> </Image>
+                                    <img className="img-fluid" alt="img" src={ContactPic}/> 
                                     </a>
+
+                                    {/* <a href="/Contactus">
+                                        <Image fluid src={ContactPic}> </Image>
+                                    </a> */}
                                 </Col>
 
                             </Row>
