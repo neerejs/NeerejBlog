@@ -305,7 +305,7 @@ const BlogList = (props) => {
                                     <ContactMe /> */}
 
                                     <a href="/Contactus">
-                                        <Image fluid src={ContactPic} ></Image>
+                                        <Image fluid src={ContactPic}> </Image>
                                     </a>
                                 </Col>
 
