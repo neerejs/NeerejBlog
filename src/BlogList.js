@@ -20,7 +20,6 @@ import Sweepstakes from './Sweepstakes';
 import Form from 'react-bootstrap/Form'
 import ContactPic from './assets/contactme.png';
 import Image from 'react-bootstrap/Image'
-import { LinkContainer} from 'react-router-bootstrap';
 
 // import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 
@@ -301,9 +300,9 @@ const BlogList = (props) => {
                                 <Col>
                                     {/* <h4 style={{ paddingTop: '10px' }}>Contact Us</h4>
                                     <ContactMe /> */}
-                                    <LinkContainer to="/contactus">
-                                        <Image fluid src = {ContactPic}></Image>
-                                    </LinkContainer>
+                                    <a href='/contactus'>
+                                    <Image fluid src = {ContactPic} style={{padding:"10px"}}></Image>
+                                    </a>
                                 </Col>
 
                             </Row>
