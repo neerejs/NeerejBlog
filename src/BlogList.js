@@ -5,17 +5,14 @@ import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
 import _ from 'lodash'
 import './BlogList.css'
-
 import Container from 'react-bootstrap/Container'
 import { DateTime } from "luxon";
 import { useNavigate } from "react-router-dom";
 import Archives from './Archives';
 import { useParams } from "react-router-dom";
-
 import AboutMe from './AboutMe';
 import Header from './Header';
 import Quicklinks from './Quicklinks';
-
 import Sweepstakes from './Sweepstakes';
 import Form from 'react-bootstrap/Form'
 import ContactPic from './assets/contactme.png';
@@ -25,9 +22,9 @@ import ContactPic from './assets/contactme.png';
 
 
 const BlogList = (props) => {
+
     const [items, setItems] = useState([]);
     const [SearchText, SetSearchText] = useState([]);
-
 
     const [tags, setTags] = useState([]);
     let navigate = useNavigate();
@@ -81,7 +78,9 @@ const BlogList = (props) => {
                     setItems(entries.items);
                 })
         }
+
         else {
+            
             contentfulClient.getEntries({
                 content_type: PLAYER_CONTENT_TYPE_ID,
                 order: '-fields.title',

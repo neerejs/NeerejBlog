@@ -9,51 +9,6 @@ import { Formik, Form } from 'formik';
 import { TextField } from './TextField';
 import * as Yup from 'yup';
 
-// function Sweepstakes() {
-//   return (
-//     <div>
-//       <Container>
-//         <Row>
-//           <Col>
-//             <Form>
-//               <Form.Group className="mb-3" controlId="formFullName">
-//                 <Form.Label>Full Name</Form.Label>
-//                 <Form.Control type="text" placeholder="Enter Full Name"
-//                   value={FullName}
-//                   onChange={(e) => setFullName(e.target.value)}
-//                 />
-
-//               </Form.Group>
-
-//               <Form.Group className="mb-3" controlId="formEmailAddress">
-//                 <Form.Label>Email Address</Form.Label>
-//                 <Form.Control type="email" placeholder="Email"
-//                   value={EmailAddress}
-//                   onChange={(e) => setEmailAddress(e.target.value)}
-
-//                 />
-//               </Form.Group>
-
-//               {show ? <Alert key='success' variant='success' dismissible onClose={() => setShow(false)}> Record created successfully  </Alert> : null}
-//               <Button variant="primary" type="submit" onClick={(e) => handleClick(e)}>
-//                 Submit
-//         </Button>
-//             </Form>
-
-//           </Col>
-//         </Row>
-//       </Container>
-
-
-
-
-
-//     </div>
-//   );
-// }
-
-// export default Sweepstakes;
-// --------------------------------------------------------------
 export const Sweepstakes = () => {
 
   let [FullName, setFullName] = useState('');
@@ -133,11 +88,11 @@ export const Sweepstakes = () => {
           <h1 className="my-4 font-weight-bold .display-4">Sign Up</h1>
           <Form>
             {/* <Form.Group> */}
-              <TextField label="First Name" name="firstName" type="text" 
-                value={FullName}
-                onChange={(e) => setFullName(e.target.value)}
-              />
-              {/* <Form.Label>Full Name</Form.Label>
+            <TextField label="First Name" name="firstName" type="text"
+              value={FullName}
+              onChange={(e) => setFullName(e.target.value)}
+            />
+            {/* <Form.Label>Full Name</Form.Label>
               <Form.Control type="text" placeholder="Enter Full Name"
                 value={FullName}
                 onChange={(e) => setFullName(e.target.value)}
